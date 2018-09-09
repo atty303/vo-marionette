@@ -31,12 +31,20 @@ set_source_files_properties(
       GENERATED TRUE
 )
 
+file(GLOB PROFILER_SOURCE_FILES *.cpp *.c)
+file(GLOB PROFILER_HEADER_FILES *.h)
+file(GLOB PROFILER_IDL_FILES *.idl)
+
 add_library(profiler SHARED
-  main.cpp
-  factory.h
+  ${PROFILER_SOURCE_FILES}
+  ${PROFILER_HEADER_FILES}
+  ${PROFILER_IDL_FILES}
   ${MIDL_OUTPUT}
   )
-add_definitions(-DDLL_EXPORT -I${CMAKE_CURRENT_BINARY_DIR})
+add_definitions(-DDLL_EXPORT -D_UNICODE)
+SET(CMAKE_SHARED_LINKER_FLAGS  "${CMAKE_SHARED_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
+set(WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 add_dependencies(profiler
   midl-cmplr
 )

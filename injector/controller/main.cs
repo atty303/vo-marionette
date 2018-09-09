@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
@@ -23,7 +25,7 @@ namespace VoMarionette {
   }
 
   public class Controller {
-    const string PROFILER_UUID = "{9992F2A6-DF35-472B-AD3E-317F85D958D7}";
+    const string PROFILER_UUID = "{75C1EAAA-9D03-48DB-8209-BF45282EB0BC}";
 
     public static void Main(string[] args) {
       //System.Diagnostics.Debug.WriteLine("hogehoge");
@@ -39,15 +41,8 @@ namespace VoMarionette {
         UseShellExecute = false
       };
 
-      var envs = psi.EnvironmentVariables;
-      // Profiler API ��L���ɂ���
-      envs.Add("COR_ENABLE_PROFILING", "1");
-      envs.Add("COR_PROFILER", PROFILER_UUID);
-      envs.Add("COR_PROFILER_PATH", opts.ProfileDllFileName);
-      // .NET �̃o�[�W��������I�� 4.0 �ɌŒ肷��
-      envs.Add("COMPLUS_Version", "v4.0.30319");
-      //
-      envs.Add("COMPLUS_ProfAPI_ProfilerCompatibilitySetting", "EnableV2Profiler");
+      
+      SetupProfiler(psi.EnvironmentVariables, PROFILER_UUID, opts.ProfileDllFileName);
 
       using (var process = new System.Diagnostics.Process())
       {
@@ -57,6 +52,25 @@ namespace VoMarionette {
       }
 
       return 0;
+    }
+
+    void SetupProfiler(StringDictionary envs, string uuid, string path)
+    {
+      // Settings Up a Profiling Environment
+      // https://docs.microsoft.com/ja-jp/dotnet/framework/unmanaged-api/profiling/setting-up-a-profiling-environment
+      envs.Add("COR_ENABLE_PROFILING", "1");
+      envs.Add("COR_PROFILER", uuid);
+
+      // Registry-Free Profiler Startup and Attach
+      // https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-4.0/ee471451(v%3dvs.100)
+      envs.Add("COR_PROFILER_PATH", path);
+
+      // Force .NET 4.0
+      envs.Add("COMPLUS_Version", "v4.0.30319");
+
+      // Profiler Compatibility Settings
+      // https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-4.0/dd778910(v%3dvs.100)
+      envs.Add("COMPLUS_ProfAPI_ProfilerCompatibilitySetting", "EnableV2Profiler");
     }
   }
 }

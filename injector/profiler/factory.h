@@ -5,12 +5,12 @@
 class Factory : public IClassFactory
 {
 public:
-  STDMETHODIMP QueryInterface(REFIID riid, void** ppvObject) override;
-  STDMETHODIMP_(ULONG) AddRef() override;
-  STDMETHODIMP_(ULONG) Release() override;
+  STDMETHODIMP QueryInterface(REFIID riid, void** ppvObject);
+  STDMETHODIMP_(ULONG) AddRef();
+  STDMETHODIMP_(ULONG) Release();
   
-  STDMETHODIMP CreateInstance(IUnknown* pUnkOuter, REFIID riid, void** ppvObject) override;
-  STDMETHODIMP LockServer(BOOL fLock) override;
+  STDMETHODIMP CreateInstance(IUnknown* pUnkOuter, REFIID riid, void** ppvObject);
+  STDMETHODIMP LockServer(BOOL fLock);
 
   static bool DllCanUnloadNow();
 
