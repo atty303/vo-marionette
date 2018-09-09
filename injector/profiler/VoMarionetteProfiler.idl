@@ -1,0 +1,25 @@
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+  object,
+  uuid(75C1EAAA-9D03-48DB-8209-BF45282EB0BC),
+  oleautomation,
+]
+interface VoMarionetteProfiler : IUnknown
+{
+};
+
+[
+  uuid(B3B0A93D-56B6-4A4D-8953-601C3BC981B4),
+  version(1.0),
+]
+library VoMarionetteProfilerLib
+{
+  importlib("stdole32.tlb");
+  [uuid(9992F2A6-DF35-472B-AD3E-317F85D958D7)]
+  coclass VoMarionetteProfilerImpl
+  {
+    [default] interface VoMarionetteProfiler;
+  };
+}

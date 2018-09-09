@@ -40,19 +40,20 @@ namespace VoMarionette {
       };
 
       var envs = psi.EnvironmentVariables;
-      // Profiler API ‚ğ—LŒø‚É‚·‚é
+      // Profiler API ï¿½ï¿½Lï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½
       envs.Add("COR_ENABLE_PROFILING", "1");
       envs.Add("COR_PROFILER", PROFILER_UUID);
       envs.Add("COR_PROFILER_PATH", opts.ProfileDllFileName);
-      // .NET ‚Ìƒo[ƒWƒ‡ƒ“‚ğ‹­§“I‚É 4.0 ‚ÉŒÅ’è‚·‚é
+      // .NET ï¿½Ìƒoï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ 4.0 ï¿½ÉŒÅ’è‚·ï¿½ï¿½
       envs.Add("COMPLUS_Version", "v4.0.30319");
-      // 
+      //
       envs.Add("COMPLUS_ProfAPI_ProfilerCompatibilitySetting", "EnableV2Profiler");
 
       using (var process = new System.Diagnostics.Process())
       {
         process.StartInfo = psi;
         process.Start();
+        process.WaitForExit();
       }
 
       return 0;
