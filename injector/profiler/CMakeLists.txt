@@ -1,5 +1,3 @@
-set(CMAKE_CONFIGURATION_TYPES Debug Release)
-
 enable_language(CXX)
 
 set(MIDL_FILE
