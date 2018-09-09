@@ -8,6 +8,10 @@
 
 
 
-```
+configure ::
 
-cmake -H. -Bbuild -G "Visual Studio 15 2017"
+    cmake -H. -Bbuild -G "Visual Studio 15 2017"
+
+build ::
+
+    cmake --build build --config RelWithDebInfo

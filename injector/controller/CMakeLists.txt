@@ -9,7 +9,9 @@ add_custom_target(nuget-restore
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Packages.config
   ${CMAKE_CURRENT_BINARY_DIR}/Packages.config COPYONLY)
 
-add_executable(controller controller/main.cs)
+file(GLOB CONTROLLER_SOURCE_FILES *.cs)
+
+add_executable(controller ${CONTROLLER_SOURCE_FILES})
 set_target_properties(controller PROPERTIES
   VS_GLOBAL_ROOTNAMESPACE ${PROJECT_NAME}
   VS_DOTNET_TARGET_FRAMEWORK_VERSION "v4.5.2"
