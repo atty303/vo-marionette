@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Visual Studio Community 2017 - amd64",
+    "visualStudio": "850bdf00",
+    "visualStudioArchitecture": "amd64",
+    "preferredGenerator": {
+      "name": "Visual Studio 15 2017",
+      "platform": "x64"
+    }
+  },
+  {
+    "name": "Visual Studio Community 2017 - x86",
+    "visualStudio": "850bdf00",
+    "visualStudioArchitecture": "x86",
+    "preferredGenerator": {
+      "name": "Visual Studio 15 2017"
+    }
+  }
+]
