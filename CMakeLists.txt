@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.12.0)
 
 project(injector VERSION 0.1.0)
 
@@ -14,3 +14,4 @@ configure_file(${CMAKE_SOURCE_DIR}/injector/Packages.config
   ${CMAKE_BINARY_DIR}/Packages.config COPYONLY)
 
 find_program(POWERSHELL_EXECUTABLE NAMES powershell)
+
