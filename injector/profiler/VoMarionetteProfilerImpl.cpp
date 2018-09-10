@@ -112,10 +112,9 @@ STDMETHODIMP VoMarionetteProfilerImpl::Initialize(IUnknown *pICorProfilerInfoUnk
 STDMETHODIMP VoMarionetteProfilerImpl::JITCompilationStarted(FunctionID functionID, BOOL fIsSafeToBlock) {
 	std::shared_ptr<FunctionInfo> fi(FunctionInfo::CreateFunctionInfo(mCorProfilerInfo2.Get(), functionID));
 
-	//fprintf(logfile, "%s", fi->get_SignatureText().c_str());
 	if (fi->get_ClassName() == L"System.Windows.Forms.CommonDialog" && fi->get_FunctionName() == L"ShowDialog") {
 		std::wofstream os;
-		os.open("d:\\hook1.txt", std::ios_base::out | std::ios_base::app);
+		os.open("d:\\hook2.txt", std::ios_base::out | std::ios_base::app);
 		os.imbue(std::locale("japanese"));
 		os << std::wstring(fi->get_ClassName()) << L" :: " << fi->get_FunctionName() << L"(" << fi->get_ArgumentCount() << std::endl;
 		os.close();

@@ -1,17 +1,14 @@
 enable_language(CXX)
 
-set(MIDL_FILE
-  ${CMAKE_CURRENT_LIST_DIR}/VoMarionetteProfiler.idl
-)
+set(MIDL_FILE ${CMAKE_CURRENT_LIST_DIR}/VoMarionetteProfiler.idl)
 get_FILENAME_COMPONENT(_MIDL_OUT_FILE ${MIDL_FILE} NAME_WE)
 set(MIDL_HEADER_FILE ${CMAKE_CURRENT_BINARY_DIR}/${_MIDL_OUT_FILE}_h.h)
 set(MIDL_IID_FILE ${CMAKE_CURRENT_BINARY_DIR}/${_MIDL_OUT_FILE}.c)
 
 set(MIDL_OUTPUT
   ${MIDL_HEADER_FILE}
-  ${MIDL_IID_FILE}
-)
-#  COMMAND midl /h IFace.h /iid GUIDS.c /proxy Proxy.c /dlldata ProxyDll.c ${MIDL_FILE}
+  ${MIDL_IID_FILE})
+
 add_custom_command(
   OUTPUT ${MIDL_OUTPUT}
   COMMAND midl /h ${MIDL_HEADER_FILE} /iid ${MIDL_IID_FILE} ${MIDL_FILE}
@@ -19,15 +16,12 @@ add_custom_command(
   DEPENDS ${MIDL_FILE}
   VERBATIM
 )
-add_custom_target(midl-cmplr
-  DEPENDS ${MIDL_OUTPUT}
-)
+add_custom_target(midl-cmplr DEPENDS ${MIDL_OUTPUT})
 
 set_source_files_properties(
   ${MIDL_OUTPUT}
     PROPERTIES
-      GENERATED TRUE
-)
+      GENERATED TRUE)
 
 file(GLOB PROFILER_SOURCE_FILES *.cpp *.c)
 file(GLOB PROFILER_HEADER_FILES *.h)
@@ -37,8 +31,7 @@ add_library(profiler SHARED
   ${PROFILER_SOURCE_FILES}
   ${PROFILER_HEADER_FILES}
   ${PROFILER_IDL_FILES}
-  ${MIDL_OUTPUT}
-  )
+  ${MIDL_OUTPUT})
 add_definitions(-DDLL_EXPORT -D_UNICODE)
 SET(CMAKE_SHARED_LINKER_FLAGS  "${CMAKE_SHARED_LINKER_FLAGS} /SUBSYSTEM:WINDOWS")
 set(WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
