@@ -11,4 +11,3 @@ template <class T> void SafeRelease(T **ppT)
 	}
 }
 
-void DebugPrintf(const wchar_t *format, ...);

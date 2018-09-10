@@ -1,16 +1,15 @@
 #pragma once
 
+#include "HakoniwaProfilerBase.h"
 #include <wrl/client.h>
 #include <cstdio>
 
-#include "VoMarionetteProfilerBase.h"
-
-class VoMarionetteProfilerImpl :
+class HakoniwaProfilerImpl :
 	public HakoniwaProfilerBase
 {
 public:
-	VoMarionetteProfilerImpl();
-	~VoMarionetteProfilerImpl();
+	HakoniwaProfilerImpl();
+	~HakoniwaProfilerImpl();
 
 	STDMETHOD(QueryInterface)(REFIID riid, void **ppObj);
 	ULONG STDMETHODCALLTYPE AddRef();

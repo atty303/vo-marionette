@@ -3,7 +3,8 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 #include "FunctionInfo.h"
-#include "Util.h"
+#include "ComUtil.h"
+#include "Debugger.h"
 
 #include <wrl/client.h>
 
@@ -71,7 +72,7 @@ FunctionInfo *FunctionInfo::CreateFunctionInfo(ICorProfilerInfo *profilerInfo, F
 	lstrcatW(signatureText, L")");
 
 	FunctionInfo* result = new FunctionInfo();
-
+	
 	result->mFunctionID = functionID;
 	result->mClassID = classID;
 	result->mClassTypeDef = classTypeDef;

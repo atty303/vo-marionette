@@ -19,13 +19,13 @@ namespace VoMarionette {
       get
       {
         var pwd = System.IO.Directory.GetCurrentDirectory();
-        return Path.Combine(pwd, "Profiler.dll");
+        return Path.Combine(pwd, "HakoniwaProfiler.dll");
       }
     }
   }
 
   public class Controller {
-    const string PROFILER_UUID = "{75C1EAAA-9D03-48DB-8209-BF45282EB0BC}";
+    const string PROFILER_UUID = "{9992F2A6-DF35-472B-AD3E-317F85D958D7}";
 
     public static void Main(string[] args) {
       //System.Diagnostics.Debug.WriteLine("hogehoge");

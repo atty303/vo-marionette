@@ -1,13 +1,13 @@
 #pragma once
 
-#include "VoMarionetteProfiler_h.h"
+#include "HakoniwaProfiler_h.h"
 
 #include <cor.h>
 #include <corprof.h>
 
 class HakoniwaProfilerBase :
 	public ICorProfilerCallback3,
-	public VoMarionetteProfiler {
+	public HakoniwaProfiler {
 public:
 	STDMETHOD(QueryInterface)(REFIID riid, void **ppObj) = 0;
 	ULONG STDMETHODCALLTYPE AddRef() = 0;
