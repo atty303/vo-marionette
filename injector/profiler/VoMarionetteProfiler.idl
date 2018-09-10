@@ -17,7 +17,7 @@ interface VoMarionetteProfiler : IUnknown
 library VoMarionetteProfilerLib
 {
   importlib("stdole32.tlb");
-  [uuid(9992F2A6-DF35-472B-AD3E-317F85D958D7)]
+  [uuid(5A6514A7-B5A2-4B37-8BF6-E1299FBC0E4A)]
   coclass VoMarionetteProfilerImpl
   {
     [default] interface VoMarionetteProfiler;

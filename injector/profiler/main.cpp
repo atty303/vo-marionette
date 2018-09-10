@@ -3,15 +3,15 @@
 #include <initguid.h>
 #include "VoMarionetteProfiler.c"
 
-#include "factory.h"
-
 // Generated from MIDL
 #include "VoMarionetteProfiler_h.h"
 
-static const int REG_STRING_MAX = 512;
-static const WCHAR HakoniwaProfilerImplProgId[] = L"HakoniwaProfilerLib.HakoniwaProfilerImpl";
+#include "factory.h"
 
-static HMODULE g_hModule = nullptr;
+static const int REG_STRING_MAX = 512;
+static const WCHAR HakoniwaProfilerImplProgId[] = L"VoMarionetteProfilerLib.VoMarionetteProfilerImpl";
+
+HMODULE g_hModule = nullptr;
 
 BOOL APIENTRY DllMain(HANDLE hModule, DWORD dwReason, void* lpReserved) {
 	if (dwReason == DLL_PROCESS_ATTACH) {
@@ -113,7 +113,7 @@ STDAPI DllRegisterServer() {
   );
 
 
-  wsprintf(szBuff, L"%s", L"Hakoniwa Profiler");
+  wsprintf(szBuff, L"%s", L"VoMarionette Profiler");
   HelperWriteKey(
     HKEY_CLASSES_ROOT,
     HakoniwaProfilerImplProgId,
