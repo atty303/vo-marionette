@@ -107,8 +107,8 @@ std::vector<BYTE> Tranpoline::GetFunctionSignatureBlob() {
 }
 
 mdMemberRef Tranpoline::DefineHakoniwaMethodIntoThisAssembly(const wchar_t* fullyQualifiedClassName, const wchar_t* methodName) {
-	static const WCHAR assemblyName[] = L"HakoniwaProfiler.MethodHook";
-	static const std::vector<BYTE> publicToken = { 0x41, 0x91, 0x82, 0x76, 0xff, 0x21, 0x51, 0x80 };
+	static const WCHAR assemblyName[] = L"VoMarionetteHook";
+	static const std::vector<BYTE> publicToken = { 0x1f, 0xec, 0xee, 0x08, 0xed, 0xb9, 0x42, 0xf0 };
 
 	//query interface
 	ComPtr<IMetaDataEmit> metaDataEmit;

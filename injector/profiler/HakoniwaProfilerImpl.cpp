@@ -128,7 +128,7 @@ STDMETHODIMP HakoniwaProfilerImpl::JITCompilationStarted(FunctionID functionID, 
 		if (fi->get_ArgumentCount() == 1) {
 			DebugPrintf(L"%s", fi->get_SignatureText().c_str());
 			Tranpoline tranpoline(mCorProfilerInfo2, fi);
-			tranpoline.Update(L"HakoniwaProfiler.MethodHook.MethodHook", L"ShowDialog");
+			tranpoline.Update(L"VoMarionette.Hook", L"ShowDialog");
 		}
 	}
 

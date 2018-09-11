@@ -9,6 +9,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE "${CMAKE_BINARY_DIR}/Release")
 
 add_subdirectory(injector/controller)
 add_subdirectory(injector/profiler)
+add_subdirectory(injector/hook)
 
 # --- NuGet
 find_program(NUGET nuget)
