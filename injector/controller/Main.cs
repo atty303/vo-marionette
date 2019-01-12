@@ -6,43 +6,32 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using CommandLine;
+using McMaster.Extensions.CommandLineUtils;
 
 namespace VoMarionette {
-  public class Options
+  [Command(Name = "vo:Marionette", Description = "Yet another CLI for Voiceroid")]
+  [HelpOption("-h|--help")]
+  public class Controller
   {
-    [Option('e', "executable", Default = "C:\\Program Files (x86)\\AHS\\VOICEROID+\\ZunkoEX\\VOICEROID.exe")]
-    public string ExecutableFileName { get; set; }
+    public static void Main(string[] args) => CommandLineApplication.Execute<Controller>(args);
+    
+    [Option("-e|--executable")]
+    private string ExecutableFileName { get; } = "C:\\Program Files (x86)\\AHS\\VOICEROID+\\ZunkoEX\\VOICEROID.exe";
 
-    public string ProfileDllFileName
-    {
-      get
-      {
-        var pwd = System.IO.Directory.GetCurrentDirectory();
-        return Path.Combine(pwd, "HakoniwaProfiler.dll");
-      }
-    }
-  }
+    private string ProfileDllFileName { get; } = Path.Combine(Directory.GetCurrentDirectory(), "HakoniwaProfiler.dll");
 
-  public class Controller {
     const string PROFILER_UUID = "{9992F2A6-DF35-472B-AD3E-317F85D958D7}";
 
-    public static void Main(string[] args) {
-      //System.Diagnostics.Debug.WriteLine("hogehoge");
-      CommandLine.Parser.Default.ParseArguments<Options>(args)
-        .WithParsed(o => new Controller().Run(o));
-    }
-
-    private int Run(Options opts)
+    private void OnExecute(CommandLineApplication app)
     {
       var psi = new ProcessStartInfo
       {
-        FileName = opts.ExecutableFileName,
+        FileName = ExecutableFileName,
         UseShellExecute = false
       };
 
       
-      SetupProfiler(psi.EnvironmentVariables, PROFILER_UUID, opts.ProfileDllFileName);
+      SetupProfiler(psi.EnvironmentVariables, PROFILER_UUID, ProfileDllFileName);
 
       using (var process = new System.Diagnostics.Process())
       {
@@ -50,8 +39,6 @@ namespace VoMarionette {
         process.Start();
         process.WaitForExit();
       }
-
-      return 0;
     }
 
     void SetupProfiler(StringDictionary envs, string uuid, string path)

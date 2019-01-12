@@ -27,6 +27,9 @@ file(GLOB PROFILER_SOURCE_FILES *.cpp *.c)
 file(GLOB PROFILER_HEADER_FILES *.h)
 file(GLOB PROFILER_IDL_FILES *.idl)
 
+configure_file(exports.def
+  ${CMAKE_CURRENT_BINARY_DIR}/exports.def COPYONLY)
+
 add_library(HakoniwaProfiler SHARED
   ${PROFILER_SOURCE_FILES}
   ${PROFILER_HEADER_FILES}
