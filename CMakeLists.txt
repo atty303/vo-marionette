@@ -11,13 +11,7 @@ add_subdirectory(injector/controller)
 add_subdirectory(injector/profiler)
 add_subdirectory(injector/hook)
 
-# --- NuGet
-find_program(NUGET nuget)
+# --- paket
 add_custom_target(nuget-restore
-  COMMAND ${NUGET} restore ${CMAKE_BINARY_DIR}/${CMAKE_PROJECT_NAME}.sln)
-
-configure_file(${CMAKE_SOURCE_DIR}/injector/Packages.config
-  ${CMAKE_BINARY_DIR}/Packages.config COPYONLY)
-
-find_program(POWERSHELL_EXECUTABLE NAMES powershell)
-
+  COMMAND ${PROJECT_SOURCE_DIR}\\.paket\\paket.exe install
+  WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
